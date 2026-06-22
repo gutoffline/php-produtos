@@ -6,7 +6,7 @@ include "inc-conexao.php";
 $sql = "select * from tb_produtos";
 $resultado = mysqli_query($conexao, $sql);
 
-$relatorio = "<table border='2'>
+$relatorio = "<table border='2' width='100%'>
         <tr>
             <th>Código</th>
             <th>Nome</th>
@@ -15,8 +15,16 @@ $relatorio = "<table border='2'>
         </tr>";
 
 while($linha = mysqli_fetch_assoc($resultado)){
-    $resultado = "<tr><td>". $linha['id'] . "<td>" . $linha['nome']. "<td>" . $linha['qtd'] . "<td>" . $linha['preco']. "</tr>";
+    $relatorio.= "<tr>";
+    $relatorio.= "<td>{$linha['id']}</td>";
+    $relatorio.= "<td>{$linha['nome']}</td>";
+    $relatorio.= "<td>{$linha['qtd']}</td>";
+    $relatorio.= "<td>{$linha['preco']}</td>";
+    $relatorio.= "</tr>";
 }
+
+$relatorio.= "</table>";
+
 mysqli_close($conexao);
 
 //Referencias necessárias
